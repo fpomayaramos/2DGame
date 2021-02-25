@@ -5,13 +5,22 @@ using UnityEngine.UI;
 using Mono.Data.Sqlite;
 using System.Data;
 
+/**
+ * This Class creates a Connection to the Database
+ * This Class will read the inputs from the "Register Scene"
+ * inputed by the user, it will then proceed to create a 
+ * new Player record if certain requirements are met
+ */
 public class ReadInput : MonoBehaviour
 {
     public Button buttonClick;
 
-    public InputField playerInput;
-    public InputField itemInput;
-    public InputField quantityInput;
+    public InputField playerNameInput;
+    public InputField playerPasswordInput;
+    public InputField confirmPasswordInput;
+
+    public Text validUsername;
+    public Text validPassword;
 
     private string dbName = "URI=file:GameDB.db";
 
@@ -21,19 +30,24 @@ public class ReadInput : MonoBehaviour
         buttonClick.onClick.AddListener(GetInputOnClick);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    /**
+     * This function Adds a new Player record to the database
+     * Only if specific requirements are met
+     * Otherwise errors are displayed on the screen
+     */
     public void GetInputOnClick()
     {
-        Debug.Log(playerInput.text + "" + itemInput.text + "" + quantityInput.text);
+        validUsername.text = "";
+        validPassword.text = "";
 
         AddPlayer();
     }
 
+    /**
+     * This function Creates a connection with the database
+     * This function Executes a Query that creates the Players table
+     * If the Players table already exist, nothing happens
+     */
     public void CreateDB()
     {
         // Create the db connection
@@ -56,6 +70,14 @@ public class ReadInput : MonoBehaviour
         }
     }
 
+    public void CheckPasswords()
+    {
+        if (playerPasswordInput.text != confirmPasswordInput.text)
+        {
+            validPassword.text = "Passwords don't match";
+        }
+    }
+
     public void AddPlayer()
     {
         /*
@@ -74,20 +96,33 @@ public class ReadInput : MonoBehaviour
         dbconn.Close();
         dbconn = null;
         */
-        
-        using (var connection = new SqliteConnection(dbName))
-        {
-            connection.Open();
 
-            // Set up an object called "command" to allow database control
-            using (var command = connection.CreateCommand())
+        try
+        {
+            using (var connection = new SqliteConnection(dbName))
             {
-                // Write the SQL command to insert a record -- values are pulled from UI InputFields
-                command.CommandText = "INSERT INTO Players (playerName) VALUES ('" + playerInput.text + "');";
-                command.ExecuteNonQuery();
+                connection.Open();
+
+                // Set up an object called "command" to allow database control
+                using (var command = connection.CreateCommand())
+                {
+                    CheckPasswords();
+
+                    // Write the SQL command to insert a record -- values are pulled from UI InputFields
+                    command.CommandText = "INSERT INTO Players (playerName, playerPassword, playerCurrentHealth, playerTotalHealth," +
+                                                               "playerMinAttack, playerMaxAttack, playerDefense, playerScore) " +
+                                                               "VALUES ('" + playerNameInput.text + "', '" + playerPasswordInput.text + "', " +
+                                                                       "'1', '1', '1', '1', '1', '1');";
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
             }
 
-            connection.Close();
+        } 
+        catch (SqliteException e)
+        {
+            validUsername.text = "Username already in use";
         }
         
     }
@@ -111,7 +146,7 @@ public class ReadInput : MonoBehaviour
                 {
                     while (reader.Read())
                     {
-                        Debug.Log("Player: " + playerInput.text + " " + itemInput.text + " " + quantityInput.text);
+                        Debug.Log("Player: " + playerNameInput.text + " " + playerPasswordInput.text + " " + confirmPasswordInput.text);
                     }
 
                     reader.Close();
