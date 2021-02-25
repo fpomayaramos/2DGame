@@ -537,9 +537,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonClick: {fileID: 1162199363}
-  playerInput: {fileID: 1736899967}
-  itemInput: {fileID: 1470309367}
-  quantityInput: {fileID: 186403626}
+  playerNameInput: {fileID: 0}
+  playerPasswordInput: {fileID: 0}
+  confirmPasswordInput: {fileID: 0}
+  validUsername: {fileID: 0}
+  validPassword: {fileID: 0}
 --- !u!1 &407281865
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,7 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.8899075, g: 0.9260439, b: 0.9339623, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1506,7 +1508,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 46a23c8a08dd56142810ba4454b11361, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
