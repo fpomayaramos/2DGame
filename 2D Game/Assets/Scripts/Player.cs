@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
 
+
     // 
     [SerializeField] private UI_Inventory uiInventory;
     private Inventory inventory;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
         inventory = new Inventory(UseItem);
         uiInventory.SetPlayer(this);
         uiInventory.SetInventory(inventory);
+
     }
 
     /**
@@ -48,6 +50,9 @@ public class Player : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
+
+
+
     }
 
     void FixedUpdate()
