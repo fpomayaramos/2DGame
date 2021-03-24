@@ -8,10 +8,10 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
-  missingFiles: []
+  missingFiles:
+  - Assets/Cartoon_Texture_Pack/_MaterialLibrary/Material_Library_Reference.png
   errors:
-  - Texture was imported at a smaller size. Make sure 'Max Size' on '../Cartoon_Texture_Pack/_MaterialLibrary/Material_Library_Reference.png'
-    is at least '6211'
+  - 'Missing texture asset: ../Cartoon_Texture_Pack/_MaterialLibrary/Material_Library_Reference.png'
   - Could not find tile 1763. Make sure the tilesets were successfully imported.
   - Could not find tile 1764. Make sure the tilesets were successfully imported.
   - Could not find tile 1843. Make sure the tilesets were successfully imported.
