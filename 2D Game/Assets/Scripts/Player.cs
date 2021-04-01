@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Player Movement
-    public float moveSpeed = 5f;
-    public Rigidbody2D rb;
-    public Animator animator;
+    // private = we don't want to change this
+    private float movementSpeed = 5f;
 
-
-    // 
+    // Inventory
     [SerializeField] private UI_Inventory uiInventory;
     private Inventory inventory;
 
-    Vector2 movement;
+    // Animator
+    private Animator animator;
+    private bool playerMoving;
+    private Vector2 lastMove;
+
+    private Rigidbody2D myRigidbody2D;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        myRigidbody2D = GetComponent<Rigidbody2D>();
+    }
 
     // Start is called before the first frame update
     private void Awake()
@@ -44,20 +53,41 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        playerMoving = false;
 
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+        // Vector 3 takes 3 parameters x, y, and z
+        // Moves Horizontally, right or left
+        if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+        {
+            // transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed * Time.deltaTime, 0f, 0f));
+            myRigidbody2D.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * movementSpeed, myRigidbody2D.velocity.y);
+            playerMoving = true;
+            lastMove = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
+        }
+        // Moves Vertically, up or down
+        if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
+        {
+            // transform.Translate(new Vector3(0f, Input.GetAxisRaw("Vertical") * movementSpeed * Time.deltaTime, 0f));
+            myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, Input.GetAxisRaw("Vertical") * movementSpeed);
+            playerMoving = true;
+            lastMove = new Vector2(0f, Input.GetAxisRaw("Vertical"));
+        }
 
+        if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
+        {
+            myRigidbody2D.velocity = new Vector2(0f, myRigidbody2D.velocity.y);
+        }
+        if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f)
+        {
+            myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, 0f);
+        }
 
-
-    }
-
-    void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        // Animation in whichever direction
+        animator.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
+        animator.SetFloat("MoveY", Input.GetAxisRaw("Vertical"));
+        animator.SetBool("PlayerMoving", playerMoving);
+        animator.SetFloat("LastMoveX", lastMove.x);
+        animator.SetFloat("LastMoveY", lastMove.y);
     }
 
     /**
