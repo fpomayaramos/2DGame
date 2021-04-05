@@ -325,7 +325,7 @@ MonoBehaviour:
   passwordInput: {fileID: 1470309367}
   validUsername: {fileID: 932219801}
   validPassword: {fileID: 1616531949}
-  sceneName: GameScene
+  sceneName: Campus
 --- !u!1 &407281865
 GameObject:
   m_ObjectHideFlags: 0

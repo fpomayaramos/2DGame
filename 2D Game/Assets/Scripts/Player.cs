@@ -14,15 +14,31 @@ public class Player : MonoBehaviour
     // Animator
     private Animator animator;
     private bool playerMoving;
-    private Vector2 lastMove;
+    public Vector2 lastMove;
+
+    public string startPoint;
 
     private Rigidbody2D myRigidbody2D;
+
+    // To stop creating duplicates when player moves around scenes
+    private static bool playerExists;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
+
+        // Check if player already exist in the new scene
+        if (!playerExists)
+        {
+            playerExists = true;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Start is called before the first frame update
