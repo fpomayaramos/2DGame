@@ -21,9 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HelpScene.unity
     guid: a6c0253c9e6e1d24285ed58405ed08d5
   - enabled: 1
-    path: Assets/Scenes/Building A.unity
-    guid: 78e2bf6c0545bb348bc502b33eabb2ae
-  - enabled: 1
     path: Assets/Scenes/Campus.unity
     guid: cdc6d78f21ab7644892e2d0630636665
+  - enabled: 1
+    path: Assets/Scenes/Building A.unity
+    guid: 78e2bf6c0545bb348bc502b33eabb2ae
   m_configObjects: {}

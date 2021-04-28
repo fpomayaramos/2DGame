@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class HurtEnemy : MonoBehaviour
 {
-    public int damageToGive;
+    public int damageToGive = 1;
+    public GameObject burstDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,12 @@ public class HurtEnemy : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyHealthManager>().HurtEnemy(damageToGive);
+
+            EnemyHealthManager eHealthMan;
+            eHealthMan = collision.gameObject.GetComponent<EnemyHealthManager>();
+            eHealthMan.HurtEnemy(damageToGive);
+
+            Instantiate(burstDamage, transform.position, transform.rotation);
         }
 
     }

@@ -20,7 +20,7 @@ public class LayerSorter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Obstacle")
+        if (collision.tag == "Obstacle" || collision.tag == "Enemy")
         {
             transform.parent.GetComponent<SpriteRenderer>().sortingOrder = collision.GetComponent<SpriteRenderer>().sortingOrder - 1;
         }

@@ -23,6 +23,11 @@ public class Player : MonoBehaviour
     // To stop creating duplicates when player moves around scenes
     private static bool playerExists;
 
+    // attack
+    private float attackTime = .2f;
+    private float attackCounter = .2f;
+    private bool isAttacking;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +93,30 @@ public class Player : MonoBehaviour
             playerMoving = true;
             lastMove = new Vector2(0f, Input.GetAxisRaw("Vertical"));
         }
+
+
+
+        if (isAttacking)
+        {
+            attackCounter -= Time.deltaTime;
+            if (attackCounter <= 0)
+            {
+                animator.SetBool("isAttacking", false);
+                isAttacking = false;
+            }
+        }
+
+        // Attack animation
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            attackCounter = attackTime;
+            animator.SetBool("isAttacking", true);
+            isAttacking = true;
+        }
+
+
+
+
 
         if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
         {

@@ -10,6 +10,7 @@ public class EnemyProfessorController: MonoBehaviour
     private Transform target;
     public Transform homePosition;
     // SerializeField = is private but can still change it in the editor
+    [SerializeField]
     private float moveSpeed = 2f;
     private float maxRange = 5f;
     private float minRange = 0.5f;
@@ -74,6 +75,15 @@ public class EnemyProfessorController: MonoBehaviour
         if (Vector3.Distance(transform.position, homePosition.position) == 0)
         {
             myAnimator.SetBool("isMoving", false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "MyWeapon")
+        {
+            Vector2 difference = transform.position - collision.transform.position;
+            transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
         }
     }
 

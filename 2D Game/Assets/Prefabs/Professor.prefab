@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7668452705174433907}
   - component: {fileID: 7668452705174433906}
   - component: {fileID: 7837536153441936366}
+  - component: {fileID: -2806527858778325090}
   m_Layer: 0
   m_Name: Professor
   m_TagString: Untagged
@@ -179,3 +180,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 10
+--- !u!114 &-2806527858778325090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7668452705174433912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a8b4a0b319de44bb5051b3cdbd738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 10
+  maxHealth: 10

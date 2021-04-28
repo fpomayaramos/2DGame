@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthManager : MonoBehaviour
 {
@@ -24,14 +25,18 @@ public class PlayerHealthManager : MonoBehaviour
         playerSprite = GetComponent<SpriteRenderer>();
     }
 
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (currentHealth <= 0)
         {
             gameObject.SetActive(false);
-
-            
+            PlayerDied();
         }
 
         if (flashActive)
@@ -73,6 +78,11 @@ public class PlayerHealthManager : MonoBehaviour
 
             flashCounter -= Time.deltaTime;
         }
+    }
+
+    private void PlayerDied()
+    {
+        LevelManager.instance.GameOver();
     }
 
     public void HurtPlayer(int damageToGive)
