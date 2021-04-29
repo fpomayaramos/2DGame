@@ -9,15 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/SignInScene.unity
-    guid: bc2a7855ffa19e549bcef178d4c4d3fb
-  - enabled: 1
-    path: Assets/Scenes/RegisterScene.unity
-    guid: ce8af0b32821b8b408336d07434ce4ee
-  - enabled: 1
-    path: Assets/Scenes/ScoreScene.unity
-    guid: 1736dd1a5d50a9045b2456317347cb9b
-  - enabled: 1
     path: Assets/Scenes/HelpScene.unity
     guid: a6c0253c9e6e1d24285ed58405ed08d5
   - enabled: 1

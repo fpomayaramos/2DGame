@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "2D Game",
+"productVersion": "0.1",
+"dataUrl": "GGC2DAdventure.data.unityweb",
+"wasmCodeUrl": "GGC2DAdventure.wasm.code.unityweb",
+"wasmFrameworkUrl": "GGC2DAdventure.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": true,
+"multithreading": false,
+"unityVersion": "2019.4.20f1"
+}

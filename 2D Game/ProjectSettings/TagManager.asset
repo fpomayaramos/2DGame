@@ -7,6 +7,8 @@ TagManager:
   - Obstacle
   - Enemy
   - MyWeapon
+  - Heal
+  - Boss
   layers:
   - Default
   - TransparentFX

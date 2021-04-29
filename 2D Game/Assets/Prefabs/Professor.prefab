@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   homePosition: {fileID: 0}
+  moveSpeed: 2
   waitToReload: 2
 --- !u!95 &7668452705174433906
 Animator:
@@ -194,3 +195,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 10
   maxHealth: 10
+  scoreToGive: 100
+  flashLenght: 0.5
